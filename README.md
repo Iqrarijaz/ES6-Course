@@ -120,4 +120,52 @@ console.log(produce);
 
 ## Rest parameter
 The rest parameter, also written with three consecutive dots ( ... ), allows you to represent an indefinite number of elements as an array. This can be helpful in a couple of different situations.
+const order = [20.17, 18.67, 1.50, "cheese", "eggs", "milk", "bread"];
+const [total, subtotal, tax, ...items] = order;
+console.log(total, subtotal, tax, items);
 
+
+#Variadic functions
+Another use case for the rest parameter is when you’re working with variadic functions. Variadic functions are functions that take an indefinite number of arguments.
+function sum(...nums) {
+  let total = 0;  
+  for(const num of nums) {
+    total += num;
+  }
+  return total;
+}
+
+## Directions:
+
+Use the rest parameter to create an average() function that calculates the average of an unlimited amount of numbers.
+
+    TIP: Make sure to test your code with different values. For example,
+
+    average(2, 6) should return 4
+    average(2, 3, 3, 5, 7, 10) should return 5
+    average(7, 1432, 12, 13, 100) should return 312.8
+    average() should return 0
+/*
+ * Programming Quiz: Using the Rest Parameter (1-5)
+ */
+
+// your code goes here
+
+function average(...nums) {
+    let ave=0;
+    for(let num of nums){
+        ave=(ave+num)
+    }
+    if (nums.length===0){
+         ave=0;
+         return ave;
+    }
+    ave=ave/nums.length
+    return ave;
+     
+}
+
+console.log(average(2, 6));
+console.log(average(2, 3, 3, 5, 7, 10));
+console.log(average(7, 1432, 12, 13, 100));
+console.log(average());
