@@ -31,3 +31,12 @@ Destructuring borrows inspiration from languages like Perl and Python by allowin
 const point = [10, 25, -34];
 const [x, y, z] = point;
 console.log(x, y, z);
+
+### Destructuring values from an object
+var person={
+    name:"iqrar",
+    age:22,
+    gender:"male"
+}
+const{name,age,gender}=person;
+console.log(name,age,gender);
