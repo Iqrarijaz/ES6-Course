@@ -38,3 +38,19 @@ sayHi();
 const orderIceCream = (flavor, cone) => console.log(`Here's your ${flavor} ice cream in a ${cone} cone.`);
 orderIceCream('chocolate', 'waffle');
 
+
+## Defaults and destructuring arrays
+You can combine default function parameters with destructuring to create some pretty powerful functions!
+function shippingLabel(name, address) {
+  name = (typeof name !== 'undefined') ? name : 'Richard';
+  address = (typeof address !== 'undefined') ?  address : 'Mountain View'
+  return `To: ${name} In: ${address}`;
+}
+
+
+function ship(name="Iqrar",address="Chakwal"){
+    return`To: ${name} In: ${address}`;
+}
+console.log(shippingLabel("Iqrar"));
+console.log(ship("Iqrar"));
+
