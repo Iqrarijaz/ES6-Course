@@ -27,12 +27,12 @@ let message = `${student.name} please see ${teacher.name} in ${teacher.room} to 
 Destructuring borrows inspiration from languages like Perl and Python by allowing you to specify the elements you want to extract from an array or object on the left side of an assignment. It sounds a little weird, but you can actually achieve the same result as before, but with much less code; and it's still easy to understand.
 
 
-### Destructuring values from an array
+## Destructuring values from an array
 const point = [10, 25, -34];
 const [x, y, z] = point;
 console.log(x, y, z);
 
-### Destructuring values from an object
+## Destructuring values from an object
 var person={
     name:"iqrar",
     age:22,
@@ -40,3 +40,84 @@ var person={
 }
 const{name,age,gender}=person;
 console.log(name,age,gender);
+
+### Directions:
+
+Use array destructuring to pull out the three colors from the array of things and store them into the variables one, two, and three.
+const things = ['red', 'basketball', 'paperclip', 'green', 'computer', 'earth', 'udacity', 'blue', 'dogs'];
+
+const [one,,,two,,,,three]=things
+const colors = `List of Colors
+1. ${one}
+2. ${two}
+3. ${three}`;
+
+console.log(colors);
+
+## Object literal shorthand
+
+let name="iqrar";
+let age=22;
+let  gender="male";
+const person ={name,age,gender,print:function(){
+    console.log(`Hello my name is ${name} and Im ${age} year old and Im ${gender}.`);
+}
+}
+console.log(person.print());
+### for...of loop 
+Really the biggest downside of a for loop is having to keep track of the counter and exit condition.
+The for...in loop improves upon the weaknesses of the for loop by eliminating the counting logic and exit condition.
+const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+for (const index in digits) {
+  console.log(digits[index]);
+}
+
+### Directions:
+
+Write a for...of loop that:
+
+    loops through each day in the days array
+    capitalizes the first letter of the day
+    and prints the day out to the console
+
+Your code should log the following to the console:
+
+    Sunday
+    Monday
+    Tuesday
+    Wednesday
+    Thursday
+    Friday
+    Saturday
+
+/*
+ * Programming Quiz: Writing a For...of Loop (1-4)
+ */
+
+const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+for(const day of days){
+   
+    console.log(day[0].toUpperCase() + day.slice(1));
+}
+
+
+
+## Spread operator
+The spread operator, written with three consecutive dots ( ... ), is new in ES6 and gives you the ability to expand
+const books = ["Don Quixote", "The Hobbit", "Alice in Wonderland", "Tale of Two Cities"];
+console.log(...books);
+
+/*
+ * Instructions: Use the spread operator to combine the `fruits` and `vegetables` arrays into the `produce` array.
+ */
+
+const fruits = ["apples", "bananas", "pears"];
+const vegetables = ["corn", "potatoes", "carrots"];
+const produce = [...fruits,...vegetables];
+console.log(produce);
+
+
+## Rest parameter
+The rest parameter, also written with three consecutive dots ( ... ), allows you to represent an indefinite number of elements as an array. This can be helpful in a couple of different situations.
+
