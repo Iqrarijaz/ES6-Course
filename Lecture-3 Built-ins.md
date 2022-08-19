@@ -1,4 +1,4 @@
-#Built-ins
+# Built-ins
 ## Symbols
 A symbol is a unique and immutable data type that is often used to identify object properties.
 To create a symbol, you write Symbol() with an optional string as its description.
@@ -8,6 +8,7 @@ console.log(sym1);
 const sym2 = Symbol('banana');
 const sym3 = Symbol('banana');
 console.log(sym2 === sym3);
+
 
 const bowl = {
   'apple': { color: 'red', weight: 136.078 },
@@ -30,18 +31,24 @@ const bowl = {
   [Symbol('orange')]: { color: 'orange', weight: 170.097 },
   [Symbol('banana')]: { color: 'yellow', weight: 176.845 }
 };
+
 console.log(bowl);
 Object {Symbol(apple): Object, Symbol(banana): Object, Symbol(orange): Object, Symbol(banana): Object}
-By changing the bowl’s properties to use symbols, each property is a unique Symbol and the first banana doesn’t get overwritten by the second banana.
+By changing the bowl’s properties to use symbols, each property is a 
+unique Symbol and the first banana doesn’t get overwritten by the second banana.
 The Iterator Protocol
-The iterator protocol is used to define a standard way that an object produces a sequence of values. What that really means is you now have a process for defining how an object will iterate. This is done through implementing the .next() method.
+The iterator protocol is used to define a standard way that an object
+produces a sequence of values. What that really means is you now have 
+a process for defining how an object will iterate. This is done through implementing the .next() method.
 How it Works
-An object becomes an iterator when it implements the .next() method. The .next() method is a zero arguments function that returns an object with two properties:
+An object becomes an iterator when it implements the .next() method. 
+The .next() method is a zero arguments function that returns an object with two properties:
     1. value : the data representing the next value in the sequence of values within the object 
     2. done : a boolean representing if the iterator is done going through the sequence of values
         ◦ If done is true, then the iterator has reached the end of its sequence of values. 
         ◦ If done is false, then the iterator is able to produce another value in its sequence of values. 
-Here’s the example from earlier, but instead we are using the array’s default iterator to step through the each value in the array.
+Here’s the example from earlier, but instead we are using the array’s 
+default iterator to step through the each value in the array.
 const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arrayIterator = digits[Symbol.iterator]();
 
