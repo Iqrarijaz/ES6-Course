@@ -1,80 +1,118 @@
-# Built-ins
-## Symbols
-A symbol is a unique and immutable data type that is often used to identify object properties.
-To create a symbol, you write Symbol() with an optional string as its description.
-const sym1 = Symbol('apple');
-console.log(sym1);
+## What is a WeakSet?
 
-const sym2 = Symbol('banana');
-const sym3 = Symbol('banana');
-console.log(sym2 === sym3);
+A WeakSet is just like a normal Set with a few key differences:
 
+    a WeakSet can only contain objects
+    a WeakSet is not iterable which means it can’t be looped over
+    a WeakSet does not have a .clear() method
 
-const bowl = {
-  'apple': { color: 'red', weight: 136.078 },
-  'banana': { color: 'yellow', weight: 183.15 },
-  'orange': { color: 'orange', weight: 170.097 }
-};
-The bowl contains fruit which are objects that are properties of the bowl. But, we run into a problem when the second banana gets added.
-const bowl = {
-  'apple': { color: 'red', weight: 136.078 },
-  'banana': { color: 'yellow', weight: 183.151 },
-  'orange': { color: 'orange', weight: 170.097 },
-  'banana': { color: 'yellow', weight: 176.845 }
-};
-console.log(bowl);
-Object {apple: Object, banana: Object, orange: Object}
-Instead of adding another banana to the bowl, our previous banana is overwritten by the new banana being added to the bowl. To fix this problem, we can use symbols.
-const bowl = {
-  [Symbol('apple')]: { color: 'red', weight: 136.078 },
-  [Symbol('banana')]: { color: 'yellow', weight: 183.15 },
-  [Symbol('orange')]: { color: 'orange', weight: 170.097 },
-  [Symbol('banana')]: { color: 'yellow', weight: 176.845 }
-};
+You can create a WeakSet just like you would a normal Set, except that you use the WeakSet constructor.
+let student1 = { name: 'James', age: 26, gender: 'male' };
+let student2 = { name: 'Julia', age: 27, gender: 'female' };
+let student3 = { name: 'Richard', age: 31, gender: 'male' };
 
-console.log(bowl);
-Object {Symbol(apple): Object, Symbol(banana): Object, Symbol(orange): Object, Symbol(banana): Object}
-By changing the bowl’s properties to use symbols, each property is a 
-unique Symbol and the first banana doesn’t get overwritten by the second banana.
-The Iterator Protocol
-The iterator protocol is used to define a standard way that an object
-produces a sequence of values. What that really means is you now have 
-a process for defining how an object will iterate. This is done through implementing the .next() method.
-How it Works
-An object becomes an iterator when it implements the .next() method. 
-The .next() method is a zero arguments function that returns an object with two properties:
-    1. value : the data representing the next value in the sequence of values within the object 
-    2. done : a boolean representing if the iterator is done going through the sequence of values
-        ◦ If done is true, then the iterator has reached the end of its sequence of values. 
-        ◦ If done is false, then the iterator is able to produce another value in its sequence of values. 
-Here’s the example from earlier, but instead we are using the array’s 
-default iterator to step through the each value in the array.
-const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const arrayIterator = digits[Symbol.iterator]();
-
-console.log(arrayIterator.next());
-console.log(arrayIterator.next());
-console.log(arrayIterator.next());
-Object {value: 0, done: false}
-Object {value: 1, done: false}
-Object {value: 2, done: false}
-
-
-## set
+const roster = new WeakSet([student1, student2, student3]);
+console.log(roster);
 /*
- * Programming Quiz: Using Sets (3-1)
+ * Programming Quiz: Using Sets (3-2)
  *
- * Create a Set object and store it in a variable named `myFavoriteFlavors`. Add the following strings to the set:
- *     - chocolate chip
- *     - cookies and cream
- *     - strawberry
- *     - vanilla
+ * Create the following variables:
+ *     - uniqueFlavors and set it to a new WeakSet object
+ *     - flavor1 and set it equal to `{ flavor: 'chocolate' }`
+ *     - flavor2 and set it equal to an object with property 'flavor' and value of your choice!
  *
- * Then use the `.delete()` method to remove "strawberry" from the set.\*/
-const myFavoriteFlavors = new Set([]);
-myFavoriteFlavors.add("chocolate chip");
-myFavoriteFlavors.add("cookies and cream");
-myFavoriteFlavors.add("strawberry");
-myFavoriteFlavors.add("vanilla");
-myFavoriteFlavors.delete("strawberry")
-console.log(myFavoriteFlavors)
+ * Use the `.add()` method to add the objects `flavor1` and `flavor2` to `uniqueFlavors`
+ * Use the `.add()` method to add the `flavor1` object (again!) to the `uniqueFlavors` set
+ */
+
+ var flavor1={ flavor: 'chocolate' };
+   var flavor2={ flavor: 'mango' };
+   var uniqueFlavors =new Set();
+   uniqueFlavors.add(flavor1);
+uniqueFlavors.add(flavor2);
+   uniqueFlavors.add(flavor1);
+console.log(uniqueFlavors);
+
+How to Create a Map
+
+To create a Map, simply type:
+
+const employees = new Map();
+console.log(employees);
+
+## Map {}
+
+This creates an empty Map employee with no key-value pairs.
+Modifying Maps
+
+Unlike Sets, you can’t create Maps from a list of values; instead, you add key-values by using the Map’s .set() method.
+
+const employees = new Map();
+
+employees.set('james.parkes@udacity.com', { 
+    firstName: 'James',
+    lastName: 'Parkes',
+    role: 'Content Developer' 
+});
+employees.set('julia@udacity.com', {
+    firstName: 'Julia',
+    lastName: 'Van Cleve',
+    role: 'Content Developer'
+});
+employees.set('richard@udacity.com', {
+    firstName: 'Richard',
+    lastName: 'Kalehoff',
+    role: 'Content Developer'
+});
+
+console.log(employees);
+
+To remove key-value pairs, simply use the .delete() method.
+
+employees.delete('julia@udacity.com');
+employees.delete('richard@udacity.com');
+console.log(employees);
+
+    Map {'james.parkes@udacity.com' => Object {firstName: 'James', lastName: 'Parkes', role: 'Course Developer'}}
+
+Again, similar to Sets, you can use the .clear() method to remove all key-value pairs from the Map.
+
+employees.clear()
+console.log(employees);
+After you’ve built your Map, you can use the .has() method to check if a key-value pair exists in your Map by passing it a key.
+
+const members = new Map();
+
+members.set('Evelyn', 75.68);
+members.set('Liam', 20.16);
+members.set('Sophia', 0);
+members.set('Marcus', 10.25);
+
+console.log(members.has('Xavier'));
+console.log(members.has('Marcus'));
+
+    false
+    true
+
+And you can also retrieve values from a Map, by passing a key to the .get() method.
+
+console.log(members.get('Evelyn'));
+
+    75.68
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
